@@ -11,9 +11,28 @@ module Analytical
       def init_javascript(location)
         init_location(location) do
           js = <<-HTML
+          HTML
+          optimizer_commands = []
+          @command_store.commands.each do |c|
+            if c[0] == :conversion
+              optimizer_commands << conversion(*c[1..-1])
+            elsif c[0] == :tracking
+              optimizer_commands << tracking(*c[1..-1])
+            elsif c[0] == :control
+              optimizer_commands << control(*c[1..-1])
+            end
+          end
+          js = optimizer_commands.join("\n") + "\n" + js
+          @command_store.commands = @command_store.commands.delete_if {|c| c[0] == :conversion || c[0] == :tracking || c[0] == :control }
+          js
+        end
+      end
+
+      def control(*args)
+        js = <<-HTML
           <!-- Analytical Init:  Google Website Optimizer Control Script -->
           <script>
-      		function utmx_section(){}function utmx(){}
+          function utmx_section(){}function utmx(){}
       		(function(){var k='#{options[:key]}',d=document,l=d.location,c=d.cookie;function f(n){
       		if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.indexOf(';',i);return escape(c.substring(i+n.
       		length+1,j<0?c.length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;
@@ -24,6 +43,12 @@ module Analytical
       		'" type="text/javascript" charset="utf-8"></sc'+'ript>')})();
       		</script><script>utmx("url",'A/B');</script>
       		<!-- End of Google Website Optimizer Control Script -->
+        HTML
+        js
+      end
+
+      def tracking(*args)
+        js = <<-HTML
       		<!-- Analytical Init: Google Website Optimizer Tracking Script -->
           <script type="text/javascript">
             var _gaq = _gaq || [];
@@ -36,9 +61,8 @@ module Analytical
             })();
           </script>
           <!-- End of Google Website Optimizer Tracking Script -->
-          HTML
-          js
-        end
+        HTML
+        js
       end
 
       def conversion(*args)
