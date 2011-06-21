@@ -29,7 +29,13 @@ module Analytical
       end
 
       def control(*args)
+        extra_js = nil
+        if(options[:cross_domain])
+          extra_js = "<script>_udn = \".#{options[:cross_domain]}\";</script>"
+        end
+
         js = <<-HTML
+          #{extra_js}
           <!-- Analytical Init:  Google Website Optimizer Control Script -->
           <script>
           function utmx_section(){}function utmx(){}
@@ -48,11 +54,17 @@ module Analytical
       end
 
       def tracking(*args)
+        extra_js = nil
+        if(options[:cross_domain])
+          extra_js = "_gaq.push(['gwo._setDomainName', '.#{options[:cross_domain]}']);"
+        end
+
         js = <<-HTML
       		<!-- Analytical Init: Google Website Optimizer Tracking Script -->
           <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['gwo._setAccount', '#{options[:account]}']);
+            #{extra_js}
             _gaq.push(['gwo._trackPageview', '/#{options[:key]}/test']);
             (function() {
               var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -66,11 +78,17 @@ module Analytical
       end
 
       def conversion(*args)
+        extra_js = nil
+        if(options[:cross_domain])
+          extra_js = "_gaq.push(['gwo._setDomainName', '.#{options[:cross_domain]}']);"
+        end
+
         js = <<-HTML
         <!-- Analytical Init:  Google Website Optimizer Conversion Script -->
         <script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['gwo._setAccount', '#{options[:account]}']);
+          #{extra_js}
           _gaq.push(['gwo._trackPageview', '/#{options[:key]}/goal']);
           (function() {
             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
