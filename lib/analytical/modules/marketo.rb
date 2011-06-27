@@ -24,6 +24,14 @@ module Analytical
         end
       end
 
+      def call_munchkin_function(function_name, args={})
+        <<-JS
+          <script type="text/javascript">
+            mktoMunchkinFunction(#{function_name}, #{args.to_json})
+          </script>
+        JS
+      end
+
     end
   end
 end
