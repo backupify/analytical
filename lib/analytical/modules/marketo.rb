@@ -24,10 +24,10 @@ module Analytical
         end
       end
 
-      def call_munchkin_function(function_name, args={})
+      def call_munchkin_function(function_name, args, sha1)
         <<-JS
           <script type="text/javascript">
-            mktoMunchkinFunction(#{function_name}, #{args.to_json})
+            mktoMunchkinFunction(#{function_name}, #{args.to_json}, "#{sha1}")
           </script>
         JS
       end
