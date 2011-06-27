@@ -24,10 +24,10 @@ module Analytical
         end
       end
 
-      def associate_lead(args, sha1)
+      def associate_lead(email, sha1)
         <<-JS
           <script type="text/javascript">
-            mktoMunchkinFunction('associateLead', #{args.to_json}, "#{sha1}");
+            mktoMunchkinFunction('associateLead', { 'Email': "#{email}" }, "#{sha1}");
           </script>
         JS
       end
