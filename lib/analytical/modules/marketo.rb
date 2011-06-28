@@ -20,7 +20,6 @@ module Analytical
           <script>mktoMunchkin("#{options[:id]}");</script>
           <!-- END Marketo Munchkin Tracking Code -->
           HTML
-          js
 
           marketo_commands = []
 
@@ -33,6 +32,7 @@ module Analytical
           js = marketo_commands.join("\n") + "\n" + js
           @command_store.commands = @command_store.commands.delete_if {|c| c[0] == :associate_lead }
 
+          js
         end
       end
 
