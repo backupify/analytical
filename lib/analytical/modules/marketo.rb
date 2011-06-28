@@ -29,7 +29,7 @@ module Analytical
             end
           end
 
-          js = marketo_commands.join("\n") + "\n" + js
+          js += "\n" + marketo_commands.join("\n")
           @command_store.commands = @command_store.commands.delete_if {|c| c[0] == :associate_lead }
 
           js
