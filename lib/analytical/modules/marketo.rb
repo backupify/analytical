@@ -21,6 +21,18 @@ module Analytical
           <!-- END Marketo Munchkin Tracking Code -->
           HTML
           js
+
+          marketo_commands = []
+
+          @command_store.commands.each do |c|
+            if c[0] == :associate_lead
+              marketo_commands << associate_lead(*c[1..-1])
+            end
+          end
+
+          js = marketo_commands.join("\n") + "\n" + js
+          @command_store.commands = @command_store.commands.delete_if {|c| c[0] == :associate_lead }
+
         end
       end
 
