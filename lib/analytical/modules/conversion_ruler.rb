@@ -11,11 +11,6 @@ module Analytical
       def init_javascript(location)
         init_location(location) do
           js = <<-HTML
-          <!-- WPMG ROI Tracking Script BEGIN -->
-          <script type="text/javascript">
-            (function(){var d=document,u=((d.location.protocol==='https:')?'s':'')+'://www.conversionruler.com/bin/js.php?siteid=6302';
-            d.write(unescape('%3Cscript src=%22http'+u+'%22 type=%22text/javascript%22%3E%3C/script%3E'));}());
-          </script>
           HTML
 
           conversion_commands = []
@@ -45,6 +40,11 @@ module Analytical
         end
 
         <<-JS
+          <!-- WPMG ROI Tracking Script BEGIN -->
+          <script type="text/javascript">
+            (function(){var d=document,u=((d.location.protocol==='https:')?'s':'')+'://www.conversionruler.com/bin/js.php?siteid=6302';
+            d.write(unescape('%3Cscript src=%22http'+u+'%22 type=%22text/javascript%22%3E%3C/script%3E'));}());
+          </script>
           <script type="text/javascript">
             #{amount}
             #{text}
