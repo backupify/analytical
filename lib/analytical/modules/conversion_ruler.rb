@@ -30,12 +30,12 @@ module Analytical
 
       def cr_track(track_id = nil, cr_text = nil, cr_amount = nil)
         text = nil
-        if !cr_text.nil?
+        unless cr_text.nil?
           text = "var crtext0 = '#{cr_text}';"
         end
 
         amount = nil
-        if !cr_amount.nil?
+        unless cr_amount.nil?
           amount = "var cramount0 = '#{cr_amount}';"
         end
 
