@@ -42,7 +42,11 @@ module Analytical
           <!-- Commission Junction BEGIN -->
           <script type="text/javascript">
             var url = 'https://www.emjcd.com/u?CID=1521498&OID=#{user_id}&TYPE=348333&ITEM1=#{lead_size}&AMT1=0&QTY1=1&CURRENCY=USD&METHOD=IMG';
-            document.write('<img width="20" height="1" src="' + url + '" />');
+            var pixel = document.createElement("img");
+            pixel.src = url;
+            pixel.width = 20;
+            pixel.height = 1;
+            document.getElementsByTagName('body')[0].appendChild(pixel);
           </script>
           <noscript>
             <div style="position: absolute; left: 0">
