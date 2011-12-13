@@ -41,11 +41,7 @@ module Analytical
         <<-JS
           <!-- Commission Junction BEGIN -->
           <script type="text/javascript">
-            var url = 'https://www.emjcd.com/u?CID=1521498';
-            url += '&OID=' + user_id;
-            url += '&TYPE=348333';
-            url += '&ITEM1=' + lead_size;
-            url += '&AMT1=0&QTY1=1&CURRENCY=USD&METHOD=IMG';
+            var url = 'https://www.emjcd.com/u?CID=1521498&OID=#{user_id}&TYPE=348333&ITEM1=#{lead_size}&AMT1=0&QTY1=1&CURRENCY=USD&METHOD=IMG';
             document.write('<img width="20" height="1" src="' + url + '" />');
           </script>
           <noscript>
