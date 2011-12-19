@@ -30,7 +30,7 @@ module Analytical
 
       def pixel_track(user_id, domain_size = 0)
         lead_size = 1
-        if(!domain_size == 0)
+        unless domain_size == 0
           case domain_size
             when 0..9 then lead_size = 1
             when 10..99 then lead_size = 2
