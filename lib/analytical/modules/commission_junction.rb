@@ -42,7 +42,7 @@ module Analytical
           <!-- Commission Junction BEGIN -->
           <script type="text/javascript">
             (function() {
-              var url = 'https://www.emjcd.com/u?CID=1521498&OID=#{user_id}&TYPE=348333&ITEM1=#{lead_size}&AMT1=0&QTY1=1&CURRENCY=USD&METHOD=IMG';
+              var url = 'https://www.emjcd.com/u?CID=1521498&OID=#{user_id}&TYPE=349449&ITEM1=#{lead_size}&AMT1=0&QTY1=1&CURRENCY=USD&METHOD=IMG';
               var pixel = document.createElement("img");
               pixel.src = url;
               pixel.width = 20;
@@ -52,7 +52,7 @@ module Analytical
           </script>
           <noscript>
             <div style="position: absolute; left: 0">
-              <img src="https://www.emjcd.com/u?CID=1521498&OID=#{user_id}&TYPE=348333&ITEM1=#{lead_size}&AMT1=0&QTY1=1&CURRENCY=USD&METHOD=IMG" alt="" width="20" height="1" />
+              <img src="https://www.emjcd.com/u?CID=1521498&OID=#{user_id}&TYPE=349449&ITEM1=#{lead_size}&AMT1=0&QTY1=1&CURRENCY=USD&METHOD=IMG" alt="" width="20" height="1" />
             </div>
           </noscript>
           <!-- Commission Junction END -->
