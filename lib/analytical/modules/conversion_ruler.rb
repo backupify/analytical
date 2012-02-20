@@ -42,7 +42,7 @@ module Analytical
         <<-JS
           <!-- WPMG ROI Tracking Script BEGIN -->
           <script type="text/javascript">
-            (function(){var d=document,u=((d.location.protocol==='https:')?'s':'')+'://www.conversionruler.com/bin/js.php?siteid=6302';
+            (function(){var d=document,u=((d.location.protocol==='https:')?'s':'')+'://www.conversionruler.com/bin/js.php?siteid=#{options[:siteid]}';
             d.write(unescape('%3Cscript src=%22http'+u+'%22 type=%22text/javascript%22%3E%3C/script%3E'));}());
           </script>
           <script type="text/javascript">
@@ -52,7 +52,7 @@ module Analytical
           </script>
           <noscript>
             <div style="position: absolute; left: 0">
-              <img src="https://www.conversionruler.com/bin/tracker.php?siteid=6302&amp;nojs=1#{(track_id.nil?) ? '' : '&amp;actn='<<track_id}" alt="" width="1" height="1" />
+              <img src="https://www.conversionruler.com/bin/tracker.php?siteid=#{options[:siteid]}&amp;nojs=1#{(track_id.nil?) ? '' : '&amp;actn='<<track_id}" alt="" width="1" height="1" />
             </div>
           </noscript>
           <!-- WPMG ROI Tracking Script END -->
