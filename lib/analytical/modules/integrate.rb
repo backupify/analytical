@@ -32,7 +32,7 @@ module Analytical
         <<-JS
           <!-- Integrate Affiliate Script BEGIN -->
           <script type="text/javascript">
-            (function(){var d=document,u=((d.location.protocol==='https:')?'s':'')+'//inttrax.com/pixel.js?cid=#{options[:cid]}&trid=';
+            (function(){var d=document,u=((d.location.protocol==='https:')?'s':'')+'://inttrax.com/pixel.js?cid=#{options[:cid]}&trid=';
             d.write(unescape('%3Cscript src=%22http'+u+'%22 type=%22text/javascript%22%3E%3C/script%3E'));}());
           </script>
           <!-- Integrate Affiliate Script END -->
