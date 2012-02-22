@@ -33,24 +33,9 @@ module Analytical
         end
       end
 
-      def lead(name, user_id, domain_size = 0)
-        lead_size = 1
-        unless domain_size == 0
-          case domain_size
-            when 0..9 then lead_size = 1
-            when 10..99 then lead_size = 2
-            else lead_size = 3
-          end
-        end
-
-        pixel_track(name, user_id, {:item1 => lead_size, :amt1 => 0, :qty1 => 1})
-      end
-
-      def payment(name, user_id, users_count)
-        pixel_track(name, user_id, {:item1 => 1, :amt1 => (users_count * 3), :qty1 => users_count})
-      end
-
       def pixel_track(name, user_id, opts = {})
+        opts = { :item1 => 0, :amt1 => 0, :qty1 => 0 }.merge(opts)
+
         if cj = options[name.to_sym]
           cj.symbolize_keys!
           js = <<-HTML
