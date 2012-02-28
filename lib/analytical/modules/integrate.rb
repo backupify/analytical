@@ -32,8 +32,20 @@ module Analytical
         <<-JS
           <!-- Integrate Affiliate Script BEGIN -->
           <script type="text/javascript">
-            (function(){var d=document,u=((d.location.protocol==='https:')?'s':'')+'://inttrax.com/pixel.js?cid=#{options[:cid]}&trid=';
-            d.write(unescape('%3Cscript src=%22http'+u+'%22 type=%22text/javascript%22%3E%3C/script%3E'));}());
+            (function() {
+              function async_load(){
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = 'http://inttrax.com/pixel.js?cid=#{options[:cid]}&trid=';
+                var x = document.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
+              }
+              if (window.attachEvent)
+                window.attachEvent('onload', async_load);
+              else
+              window.addEventListener('load', async_load, false);
+            })();
           </script>
           <!-- Integrate Affiliate Script END -->
         JS
