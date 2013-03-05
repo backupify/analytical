@@ -11,20 +11,26 @@ module Analytical
       def init_javascript(location)
         init_location(location) do
           js = <<-HTML
-          <script language="javascript" src="//nexus.ensighten.com/symantec/scode/om_code_min.js" type="text/javascript"></script>
-          <!--<script language="javascript" src="#{options[:om_code]}" type="text/javascript"></script>-->
+          <script language="javascript" src="#{options[:om_code]}" type="text/javascript"></script>
 
-          <script language="javascript" src="//nexus.ensighten.com/symantec/scode/s_code_min.js" type="text/javascript"></script>
-          <!--<script language="javascript" src="#{options[:s_code]}" type="text/javascript"></script>-->
+          <script language="javascript" src="#{options[:s_code]}" type="text/javascript"></script>
           HTML
+
+          identify_commands = []
+          @command_store.commands.each do |c|
+            if c[0] == :identify
+              identify_commands << identify(*c[1..-1])
+            end
+          end
+          js = identify_commands.join("\n") + "\n" + js
+          @command_store.commands = @command_store.commands.delete_if {|c| c[0] == :identify }
 
           js
         end
       end
 
-      def track(*args)
-
-        js = <<-HTML
+      def identify(*args)
+        code = <<-HTML
           <!-- SiteCatalyst code. Copyright 1997-2008 Omniture, Inc. More info available at http:\/\/www.omniture.com -->
 
           <script language="javascript" type="text/javascript"><!--
@@ -58,7 +64,7 @@ module Analytical
           <!-- End SiteCatalyst code -->
         HTML
 
-        js
+        code
       end
 
     end
