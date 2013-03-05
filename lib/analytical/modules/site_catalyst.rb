@@ -24,10 +24,10 @@ module Analytical
 
       def track(*args)
 
-        js = <<-JS
+        js = <<-HTML
           <!-- SiteCatalyst code. Copyright 1997-2008 Omniture, Inc. More info available at http:\/\/www.omniture.com -->
 
-          <script language="JavaScript" type="text/javascript"><!--
+          <script language="javascript" type="text/javascript"><!--
           /* You may give each page an identifying name, server, and channel on the next lines. */
 
           s.account="#{options[:report_suite]}";
@@ -47,13 +47,16 @@ module Analytical
           s.eVar49="#{options[:content_title]}";
 
           /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
-          var s_code=s.t();if(s_code)document.write(s_code)//--></script>
-          <script language="JavaScript" type="text/javascript"><!--
+          var s_code=s.t();
+          if(s_code)document.write(s_code)
+          //--></script>
+
+          <script language="javascript" type="text/javascript"><!--
           if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
           //--></script>
           <!--/DO NOT REMOVE/-->
           <!-- End SiteCatalyst code -->
-        JS
+        HTML
 
         js
       end
