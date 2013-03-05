@@ -53,10 +53,7 @@ module Analytical
           s.eVar49=document.title;
 
           /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
-          var s_code=s.t();
-          if(s_code)document.write(s_code)
-          //--></script>
-
+          var s_code=s.t();if(s_code)document.write(s_code)//--></script>
           <script language="javascript" type="text/javascript"><!--
           if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
           //--></script>
