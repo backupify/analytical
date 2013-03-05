@@ -39,10 +39,10 @@ module Analytical
           s.prop48="#{options[:content_title]}";
 
           /* Conversion Variables */
-          s.eVar27="#{options[:site_country]};
-          s.eVar28="#{options[:site_language]};
-          s.eVar41="#{options[:site_section]};
-          s.eVar49="#{options[:content_title]};
+          s.eVar27="#{options[:site_country]}";
+          s.eVar28="#{options[:site_language]}";
+          s.eVar41="#{options[:site_section]}";
+          s.eVar49="#{options[:content_title]}";
 
           /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
           var s_code=s.t();if(s_code)document.write(s_code)//--></script>
