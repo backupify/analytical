@@ -1,12 +1,14 @@
 source :rubygems
 
-group :development do
+group :development, :test do
+  gem 'rails', '3.0.9'
+  gem 'activesupport'
+  gem 'activemodel'
+  gem 'rspec-rails', '~> 2.11'
   gem 'jeweler'
-  gem 'rspec', '1.3'
   gem 'diff-lcs'
-  gem 'rails', '~> 2.3'
   gem 'guard'
   gem 'guard-rspec'
-  gem 'rb-fsevent'
+  gem 'rb-fsevent', ">= 0.9.2"
   gem 'growl'
 end

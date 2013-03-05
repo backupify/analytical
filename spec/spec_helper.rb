@@ -1,19 +1,22 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'rubygems'
+
+ENV["RAILS_ENV"] ||= 'test'
+
 require 'active_support'
 require 'active_support/core_ext'
 require 'active_support/json'
 require 'action_view'
-require 'spec'
-require 'spec/autorun'
+require 'active_model'
+require 'action_controller'
+require 'rails'
+require 'rspec/rails'
 
-require 'analytical'
-
-Spec::Runner.configure do |config|
-end
-
-module Rails
-  def self.root
-    File.dirname(__FILE__)
+RSpec.configure do |config|
+  config.mock_with :rspec
+  config.expect_with :rspec
+  config.before do
+    Rails.stub(:root).and_return(Pathname.new(__FILE__).dirname)
   end
 end
+
+require 'analytical'

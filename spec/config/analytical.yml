@@ -1,9 +1,20 @@
-google:
-  key: google_12345
-clicky:
-  key: clicky_12345
-kiss_metrics:
-  key: kiss_metrics_12345
-chartbeat:
-  key: chartbeat_12345
-  domain: your.domain.com
+test:
+  javascript_helpers: true
+  false_option: false
+  true_option: true
+  string_option: "string"
+  google:
+    key: google_12345
+  clicky:
+    key: clicky_12345
+  kiss_metrics:
+    key: kiss_metrics_12345
+    js_url_key: kiss_metrics_js_url_12345
+  chartbeat:
+    key: chartbeat_12345
+    domain: your.domain.com
+
+production:
+
+development:
+
