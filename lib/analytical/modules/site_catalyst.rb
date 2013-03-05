@@ -23,8 +23,10 @@ module Analytical
       end
 
       def track(*args)
+
         js = <<-JS
           <!-- SiteCatalyst code. Copyright 1997-2008 Omniture, Inc. More info available at http:\/\/www.omniture.com -->
+
           <script language="JavaScript" type="text/javascript"><!--
           /* You may give each page an identifying name, server, and channel on the next lines. */
 
