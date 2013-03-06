@@ -11,9 +11,9 @@ module Analytical
       def init_javascript(location)
         init_location(location) do
           js = <<-HTML
-          <script language="javascript" src="#{options[:om_code]}" type="text/javascript"></script>
+          <script type="text/javascript" src="#{options[:om_code]}"></script>
 
-          <script language="javascript" src="#{options[:s_code]}" type="text/javascript"></script>
+          <script type="text/javascript" src="#{options[:s_code]}"></script>
           HTML
 
           identify_commands = []
@@ -33,7 +33,7 @@ module Analytical
         code = <<-HTML
           <!-- SiteCatalyst code. Copyright 1997-2008 Omniture, Inc. More info available at http:\/\/www.omniture.com -->
 
-          <script language="javascript" type="text/javascript"><!--
+          <script language="JavaScript" type="text/javascript"><!--
           /* You may give each page an identifying name, server, and channel on the next lines. */
 
           s.account="#{options[:report_suite]}";
@@ -54,7 +54,7 @@ module Analytical
 
           /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
           var s_code=s.t();if(s_code)document.write(s_code)//--></script>
-          <script language="javascript" type="text/javascript"><!--
+          <script language="JavaScript" type="text/javascript"><!--
           if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
           //--></script>
           <!--/DO NOT REMOVE/-->
