@@ -12,7 +12,7 @@ module Analytical
         init_location(location) do
           js = <<-HTML
 
-          <script type="text/javascript">var report_suite = "#{options[:report_suite]}";</script>
+          <script type="text/javascript">window.reportsuite_id = "#{options[:report_suite]}";</script>
 
           <script type="text/javascript" src="#{options[:om_code]}"></script>
 
