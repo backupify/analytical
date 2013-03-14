@@ -41,21 +41,14 @@ module Analytical
           <script language="JavaScript" type="text/javascript"><!--
           /* You may give each page an identifying name, server, and channel on the next lines. */
 
-          s.account="#{options[:report_suite]}";
           s.pageName=metaData['page_name'];
           s.server="#{options[:server]}";
-          s.prop2="#{options[:site_country]}";
-          s.prop3="#{options[:site_language]}";
-          s.prop41="#{options[:site_section]}";
+          s.prop2=s.eVar27="#{options[:site_country]}";
+          s.prop3=s.eVar28="#{options[:site_language]}";
+          s.prop41=s.eVar41="#{options[:site_section]}";
           s.prop46="#{options[:content_format]}";
-          s.prop47="#{options[:content_type]}";
+          s.prop47=s.eVar49="#{options[:content_type]}";
           s.prop48=document.title;
-
-          /* Conversion Variables */
-          s.eVar27="#{options[:site_country]}";
-          s.eVar28="#{options[:site_language]}";
-          s.eVar41="#{options[:site_section]}";
-          s.eVar49=document.title;
 
           /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
           var s_code=s.t();if(s_code)document.write(s_code)//--></script>
