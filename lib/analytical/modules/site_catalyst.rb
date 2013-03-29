@@ -54,6 +54,7 @@ module Analytical
           s.eVar28="#{options[:site_language]}";
           s.eVar41="#{options[:site_section]}";
           s.eVar49=metaData['content_title'];
+          s.eVar29=metaData['signed_in'];
 
           /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
           var s_code=s.t();if(s_code)document.write(s_code)//--></script>
