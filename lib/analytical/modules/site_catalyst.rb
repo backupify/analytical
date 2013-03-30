@@ -39,7 +39,6 @@ module Analytical
           <script language="JavaScript" type="text/javascript"><!--
           /* You may give each page an identifying name, server, and channel on the next lines. */
 
-          s.account="#{options[:report_suite]}";
           s.pageName=metaData['page_name'];
           s.server="#{options[:server]}";
           s.prop2="#{options[:site_country]}";
