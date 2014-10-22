@@ -48,7 +48,7 @@ module Analytical
       def method_missing(method, *args, &block)
         @parent.modules.values.collect do |m|
           m.send(method, *args) if m.respond_to?(method)
-        end.compact.join("\n")
+        end.delete_if{|c| c.blank?}.join("\n")
       end
     end
 
@@ -67,7 +67,21 @@ module Analytical
     end
 
     def head_append_javascript
-      [init_javascript(:head_append), tracking_javascript(:head_append)].delete_if{|s| s.blank?}.join("\n")
+      js = [
+        init_javascript(:head_append),
+        tracking_javascript(:head_append),
+      ]
+
+      if options[:javascript_helpers]
+        if Gem::Version.new(::Rails::VERSION::STRING) >= Gem::Version.new('3.1.0')  # Rails 3.1 lets us override views in engines
+          js << options[:controller].send(:render_to_string, :partial=>'analytical_javascript') if options[:controller]
+        else # All other rails
+          _partial_path = Pathname.new(__FILE__).dirname.join('..', '..', 'app/views/application', '_analytical_javascript.html.erb').to_s
+          js << options[:controller].send(:render_to_string, :file=>_partial_path, :layout=>false) if options[:controller]
+        end
+      end
+
+      js.delete_if{|s| s.blank?}.join("\n")
     end
 
     alias_method :head_javascript, :head_append_javascript
@@ -103,7 +117,7 @@ module Analytical
     def init_javascript(location)
       @modules.values.collect do |m|
         m.init_javascript(location) if m.respond_to?(:init_javascript)
-      end.compact.join("\n")
+      end.delete_if{|c| c.blank?}.join
     end
 
     def available_modules

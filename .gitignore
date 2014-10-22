@@ -21,5 +21,8 @@ pkg
 ## PROJECT::SPECIFIC
 .bundle
 
-## RUBYMINE
 .idea
+bin
+
+# RAILS
+log

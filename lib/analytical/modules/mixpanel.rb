@@ -28,7 +28,7 @@ module Analytical
 
       def track(event, properties = {})
         callback = properties.delete(:callback) || "function(){}"
-        "mpmetrics.track('#{event}', #{properties.to_json}, #{callback});"
+        %(mpmetrics.track("#{event}", #{properties.to_json}, #{callback});)
       end
 
       # Used to set "Super Properties" - http://mixpanel.com/api/docs/guides/super-properties
@@ -37,18 +37,14 @@ module Analytical
       end
 
       def identify(id, *args)
-        "mpmetrics.identify('#{id}');"
+        opts = args.first || {}
+        name = opts.is_a?(Hash) ? opts[:name] : ""
+        name_str = name.blank? ? "" : " mpmetrics.name_tag('#{name}');"
+        %(mpmetrics.identify('#{id}');#{name_str})
       end
 
-      def event(funnel, *args)
-        data = args.last || {}
-        step = data.delete(:step)
-        goal = data.delete(:goal)
-        callback = data.delete(:callback) || "function(){}"
-        return "/* API Error: Funnel is not set for 'mpmetrics.track_funnel(funnel:string, step:int, goal:string, properties:object, callback:function); */" if funnel.blank?
-        return "/* API Error: Step is not set for 'mpmetrics.track_funnel(#{funnel}, ...); */" unless step && step.to_i >= 0
-        return "/* API Error: Goal is not set for 'mpmetrics.track_funnel(#{funnel}, #{step}, ...); */" if goal.blank?
-        "mpmetrics.track_funnel('#{funnel}', '#{step}', '#{goal}', #{data.to_json}, #{callback});"
+      def event(name, attributes = {})
+        %(mpmetrics.track("#{name}", #{attributes.to_json});)
       end
 
     end
