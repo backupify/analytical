@@ -52,7 +52,7 @@ module Analytical
         if analytical_is_robot?(request.user_agent, options[:user_agent_whitelist] || [])
           options[:modules] = []
         end
-        optins[:modules] = options[:filter_modules].call(self, options[:modules]) if options[:filter_modules]
+        options[:modules] = options[:filter_modules].call(self, options[:modules]) if options[:filter_modules]
         options[:javascript_helpers] ||= true if options[:javascript_helpers].nil?
         Analytical::Api.new options
       end
