@@ -9,7 +9,6 @@ module Analytical
       end
 
       def init_javascript(location)
-
         init_location(location) do
           case location.to_sym
             when :head_prepend
@@ -47,41 +46,15 @@ module Analytical
         end
       end
 
-      def track_page(page_name, page_type)
-        "dataLayer.push({ 'page_pageName': '#{page_name}', 'page_pageType': '#{page_type}'});"
-      end
-
-      def track(*args)
-        name = args.first;
-        "dataLayer.push({ 'page_virtualName': \"#{name}\", 'event': 'gtm.view' });"
-      end
-
-      def event(name, *args)
-        params = args.first || {}
-        <<-HTML
-        var dataLayerEventData = #{params.to_json};
-        dataLayerEventData['event'] = "#{name}";
-        dataLayer.push(dataLayerEventData);
-        HTML
-      end
-
-      def identify(name, *args)
-        params = args.first || {}
-        <<-HTML
-        var dataLayerEventData = #{params.to_json};
-        dataLayerEventData['event'] = 'identify';
-        dataLayerEventData['user_id'] = "#{name}";
-        dataLayer.push(dataLayerEventData);
-        HTML
-      end
-
-      def set(data)
-        return '' if data.blank?
-        "dataLayer.push(#{data.to_json});"
+      def event(name, attributes = {})
+        attributes = attributes.is_a?(Hash) ? attributes : {}
+        attributes[:event] = name
+        "dataLayer.push(#{attributes.to_json});"
       end
 
       def associate_lead(email, sha1)
-        "dataLayer.push({ 'event': 'associateLead', 'leadEmail': '#{email}', 'authKey': '#{sha1}' });"
+        return '' unless email.present? && sha1.present?
+        "dataLayer.push({'event': 'associateLead', 'leadEmail': '#{email}', 'authKey': '#{sha1}'});"
       end
 
     end
