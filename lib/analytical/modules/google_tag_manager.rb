@@ -46,10 +46,14 @@ module Analytical
         end
       end
 
-      def event(name, attributes = {})
-        attributes = attributes.is_a?(Hash) ? attributes : {}
-        attributes[:event] = name
-        "dataLayer.push(#{attributes.to_json});"
+      # dataLayer function and variables are output to HTML so they can be accessed via the Analytical JS function
+      def event(name, *args)
+        params = args.first.is_a?(Hash) ? args.first : {}
+        <<-HTML
+        var dataLayerEventData = #{params.to_json};
+        dataLayerEventData['event'] = "#{name}";
+        dataLayer.push(dataLayerEventData);
+        HTML
       end
 
       def associate_lead(email, sha1)

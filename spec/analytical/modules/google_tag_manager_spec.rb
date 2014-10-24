@@ -17,28 +17,40 @@ describe "Analytical::Modules::GoogleTagManager" do
 
   describe '#event' do
     it 'should return the event javascript' do
-      @api = Analytical::Modules::GoogleTagManager.new :parent=>@parent, :key=>'abcdef'
-      result = @api.event('someEventName', {:foo=>'bar'})
-      match = result.match /dataLayer.push\(\{(.+)\}/ 
-      match.should_not be_nil
-      # parse the JSON to work around varying order of key/value pairs in analytical's result string
-      JSON.parse("{#{ match[1] }}").should == {"event"=>"someEventName", "foo" =>"bar"}
+      @api = Analytical::Modules::GoogleTagManager.new :parent=>@parent, :key=>'abcdef'      
+      @api.event('someEventName', {:foo=>'bar'}).should ==
+      <<-HTML
+        var dataLayerEventData = {\"foo\":\"bar\"};
+        dataLayerEventData['event'] = "someEventName";
+        dataLayer.push(dataLayerEventData);
+        HTML
     end
     it 'should include attribute values' do
       @api = Analytical::Modules::GoogleTagManager.new :parent=>@parent, :key=>'abcdef'
-      result = @api.event('someEventName', {:value=>555, :more=>'info'})
-      match = result.match /dataLayer.push\(\{(.+)\}/ 
-      match.should_not be_nil
-      # parse the JSON to work around varying order of key/value pairs in analytical's result string
-      JSON.parse("{#{ match[1] }}").should == {"event"=>"someEventName", "value" => 555, "more" => "info"}
+      @api.event('someEventName', {:foo=>'bar', :more=>'info'}).should ==
+      <<-HTML
+        var dataLayerEventData = {\"foo\":\"bar\",\"more\":\"info\"};
+        dataLayerEventData['event'] = "someEventName";
+        dataLayer.push(dataLayerEventData);
+        HTML
     end
     it 'should not include attributes if there is no value' do
       @api = Analytical::Modules::GoogleTagManager.new :parent=>@parent, :key=>'abcdef'
-      @api.event('someEventName').should ==  "dataLayer.push({\"event\":\"someEventName\"});"
+      @api.event('someEventName').should ==
+      <<-HTML
+        var dataLayerEventData = {};
+        dataLayerEventData['event'] = "someEventName";
+        dataLayer.push(dataLayerEventData);
+        HTML
     end
     it 'should not include attributes if it is not a hash' do
       @api = Analytical::Modules::GoogleTagManager.new :parent=>@parent, :key=>'abcdef'
-      @api.event('someEventName', 555).should ==  "dataLayer.push({\"event\":\"someEventName\"});"
+      @api.event('someEventName', 555).should ==
+      <<-HTML
+        var dataLayerEventData = {};
+        dataLayerEventData['event'] = "someEventName";
+        dataLayer.push(dataLayerEventData);
+        HTML
     end
   end
 
