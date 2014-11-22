@@ -2,7 +2,7 @@
 
 Gem for managing multiple analytics services in your rails app.
 
-{<img src="https://secure.travis-ci.org/jkrall/analytical.png" />}[http://travis-ci.org/jkrall/analytical]
+{<img src="https://secure.travis-ci.org/backupify/analytical.png" />}[http://travis-ci.org/backupify/analytical]
 
 Service implementations include:
 * Google Analytics
