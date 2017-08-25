@@ -13,6 +13,8 @@ tmtags
 ## VIM
 *.swp
 
+!.ruby-version
+
 ## PROJECT::GENERAL
 coverage
 rdoc
