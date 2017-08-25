@@ -8,11 +8,11 @@ describe Analytical::Modules::Base do
 
   describe '#protocol' do
     before(:each) do
-      @api = BaseApiDummy.new(:parent=>mock('parent'))
+      @api = BaseApiDummy.new(:parent=>double('parent'))
     end
     describe 'with :ssl=>true option' do
       it 'should return https' do
-        @api = BaseApiDummy.new(:parent=>mock('parent'), :ssl=>true)
+        @api = BaseApiDummy.new(:parent=>double('parent'), :ssl=>true)
         @api.protocol.should == 'https'
       end
     end
@@ -23,7 +23,7 @@ describe Analytical::Modules::Base do
 
   describe '#queue' do
     before(:each) do
-      @api = BaseApiDummy.new(:parent=>mock('parent'))
+      @api = BaseApiDummy.new(:parent=>double('parent'))
       @api.command_store.commands = [:a, :b, :c]
     end
     describe 'with an identify command' do
@@ -40,7 +40,7 @@ describe Analytical::Modules::Base do
     end
     describe 'ignoring duplicates' do
       before(:each) do
-        @api = BaseApiDummy.new(:parent=>mock('parent'), :ignore_duplicates=>true)
+        @api = BaseApiDummy.new(:parent=>double('parent'), :ignore_duplicates=>true)
         @api.command_store.commands = [[:a]]
       end
       it 'should store only unique commands' do
@@ -55,10 +55,10 @@ describe Analytical::Modules::Base do
 
   describe '#process_queued_commands' do
     before(:each) do
-      @api = BaseApiDummy.new(:parent=>mock('parent'))
+      @api = BaseApiDummy.new(:parent=>double('parent'))
       @api.command_store.commands = [[:a, 1, 2, 3], [:b, {:some=>:args}]]
-      @api.stub!(:a).and_return('a')
-      @api.stub!(:b).and_return('b')
+      @api.stub(:a).and_return('a')
+      @api.stub(:b).and_return('b')
     end
     it 'should send each of the args arrays in the command list' do
       @api.should_receive(:a).with(1, 2, 3).and_return('a')
@@ -80,17 +80,17 @@ describe Analytical::Modules::Base do
 
   describe '#init_location?' do
     before(:each) do
-      @api = BaseApiDummy.new(:parent=>mock('parent'))
+      @api = BaseApiDummy.new(:parent=>double('parent'))
       @api.instance_variable_set '@tracking_command_location', :my_location
     end
     describe 'when the command location matches the init location' do
       it 'should return true' do
-        @api.init_location?(:my_location).should be_true
+        @api.init_location?(:my_location).should be true
       end
     end
     describe 'when the command location does not match the init location' do
       it 'should return false' do
-        @api.init_location?(:not_my_location).should be_false
+        @api.init_location?(:not_my_location).should be false
       end
     end
   end
@@ -104,10 +104,10 @@ describe Analytical::Modules::Base do
       @api.init_location(:some_location)
     end
     describe 'for a valid init location' do
-      before(:each) { @api.stub!(:init_location?).and_return(true) }
+      before(:each) { @api.stub(:init_location?).and_return(true) }
       it 'should set initialized to true' do
         @api.init_location(:some_location)
-        @api.initialized.should be_true
+        @api.initialized.should be true
       end
       it 'should yield to the block and return its result' do
         @api.init_location(:some_location) do
@@ -117,7 +117,7 @@ describe Analytical::Modules::Base do
     end
     describe 'not for an init location' do
       before(:each) do
-        @api.stub!(:init_location?).and_return(false)
+        @api.stub(:init_location?).and_return(false)
       end
       it 'should return an empty string' do
         @api.init_location(:not_my_init_location).should == ''

@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "Analytical::Modules::Gauges" do
   before(:each) do
-    @parent = mock('api', :options=>{:gauges=>{:site_id=>'abc'}})
+    @parent = double('api', :options=>{:gauges=>{:site_id=>'abc'}})
   end
   describe 'on initialize' do
     it 'should set the command_location' do

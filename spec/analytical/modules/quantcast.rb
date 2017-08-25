@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "Analytical::Modules::Quantcast" do
   before(:each) do
-    @parent = mock('api', :options=>{:quantcast=>{:key=>1234}})
+    @parent = double('api', :options=>{:quantcast=>{:key=>1234}})
   end
   describe 'on initialize' do
     it 'should set the command_location' do

@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "Analytical::Modules::Adroll" do
   before(:each) do
-    @parent = mock('api', :options=>{:Adroll=>{:key=>'abc'}})
+    @parent = double('api', :options=>{:Adroll=>{:key=>'abc'}})
   end
   describe 'on initialize' do
     it 'should set the command_location' do

@@ -5,15 +5,15 @@
 # stub: analytical 3.0.14 ruby lib
 
 Gem::Specification.new do |s|
-  s.name = "analytical"
+  s.name = "analytical".freeze
   s.version = "3.0.14"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.require_paths = ["lib"]
-  s.authors = ["Joshua Krall", "Nathan Phelps", "Adam Anderson", "Kevin Menard", "Ablyamitov Ablyamit", "Kurt Werle", "Olivier Lauzon", "Daniel Doubrovkine"]
-  s.date = "2014-11-07"
-  s.description = "Gem for managing multiple analytics services in your rails app."
-  s.email = "josh@feefighters.com"
+  s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib".freeze]
+  s.authors = ["Joshua Krall".freeze, "Nathan Phelps".freeze, "Adam Anderson".freeze, "Kevin Menard".freeze, "Ablyamitov Ablyamit".freeze, "Kurt Werle".freeze, "Olivier Lauzon".freeze, "Daniel Doubrovkine".freeze]
+  s.date = "2017-08-25"
+  s.description = "Gem for managing multiple analytics services in your rails app.".freeze
+  s.email = "josh@feefighters.com".freeze
   s.extra_rdoc_files = [
     "LICENSE",
     "README.rdoc"
@@ -56,47 +56,47 @@ Gem::Specification.new do |s|
     "lib/analytical/session_command_store.rb",
     "rails/init.rb"
   ]
-  s.homepage = "http://github.com/jkrall/analytical"
-  s.rubygems_version = "2.2.2"
-  s.summary = "Gem for managing multiple analytics services in your rails app."
+  s.homepage = "http://github.com/jkrall/analytical".freeze
+  s.rubygems_version = "2.5.2".freeze
+  s.summary = "Gem for managing multiple analytics services in your rails app.".freeze
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<rails>, ["= 3.0.9"])
-      s.add_development_dependency(%q<activesupport>, [">= 0"])
-      s.add_development_dependency(%q<activemodel>, [">= 0"])
-      s.add_development_dependency(%q<rspec-rails>, ["~> 2.11"])
-      s.add_development_dependency(%q<jeweler>, [">= 0"])
-      s.add_development_dependency(%q<diff-lcs>, [">= 0"])
-      s.add_development_dependency(%q<guard>, [">= 0"])
-      s.add_development_dependency(%q<guard-rspec>, [">= 0"])
-      s.add_development_dependency(%q<rb-fsevent>, [">= 0.9.2"])
-      s.add_development_dependency(%q<growl>, [">= 0"])
+      s.add_development_dependency(%q<rails>.freeze, ["= 5.1.0"])
+      s.add_development_dependency(%q<activesupport>.freeze, [">= 0"])
+      s.add_development_dependency(%q<activemodel>.freeze, [">= 0"])
+      s.add_development_dependency(%q<rspec-rails>.freeze, [">= 0"])
+      s.add_development_dependency(%q<jeweler>.freeze, [">= 0"])
+      s.add_development_dependency(%q<diff-lcs>.freeze, [">= 0"])
+      s.add_development_dependency(%q<guard>.freeze, [">= 0"])
+      s.add_development_dependency(%q<guard-rspec>.freeze, [">= 0"])
+      s.add_development_dependency(%q<rb-fsevent>.freeze, [">= 0.9.2"])
+      s.add_development_dependency(%q<growl>.freeze, [">= 0"])
     else
-      s.add_dependency(%q<rails>, ["= 3.0.9"])
-      s.add_dependency(%q<activesupport>, [">= 0"])
-      s.add_dependency(%q<activemodel>, [">= 0"])
-      s.add_dependency(%q<rspec-rails>, ["~> 2.11"])
-      s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<diff-lcs>, [">= 0"])
-      s.add_dependency(%q<guard>, [">= 0"])
-      s.add_dependency(%q<guard-rspec>, [">= 0"])
-      s.add_dependency(%q<rb-fsevent>, [">= 0.9.2"])
-      s.add_dependency(%q<growl>, [">= 0"])
+      s.add_dependency(%q<rails>.freeze, ["= 5.1.0"])
+      s.add_dependency(%q<activesupport>.freeze, [">= 0"])
+      s.add_dependency(%q<activemodel>.freeze, [">= 0"])
+      s.add_dependency(%q<rspec-rails>.freeze, [">= 0"])
+      s.add_dependency(%q<jeweler>.freeze, [">= 0"])
+      s.add_dependency(%q<diff-lcs>.freeze, [">= 0"])
+      s.add_dependency(%q<guard>.freeze, [">= 0"])
+      s.add_dependency(%q<guard-rspec>.freeze, [">= 0"])
+      s.add_dependency(%q<rb-fsevent>.freeze, [">= 0.9.2"])
+      s.add_dependency(%q<growl>.freeze, [">= 0"])
     end
   else
-    s.add_dependency(%q<rails>, ["= 3.0.9"])
-    s.add_dependency(%q<activesupport>, [">= 0"])
-    s.add_dependency(%q<activemodel>, [">= 0"])
-    s.add_dependency(%q<rspec-rails>, ["~> 2.11"])
-    s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<diff-lcs>, [">= 0"])
-    s.add_dependency(%q<guard>, [">= 0"])
-    s.add_dependency(%q<guard-rspec>, [">= 0"])
-    s.add_dependency(%q<rb-fsevent>, [">= 0.9.2"])
-    s.add_dependency(%q<growl>, [">= 0"])
+    s.add_dependency(%q<rails>.freeze, ["= 5.1.0"])
+    s.add_dependency(%q<activesupport>.freeze, [">= 0"])
+    s.add_dependency(%q<activemodel>.freeze, [">= 0"])
+    s.add_dependency(%q<rspec-rails>.freeze, [">= 0"])
+    s.add_dependency(%q<jeweler>.freeze, [">= 0"])
+    s.add_dependency(%q<diff-lcs>.freeze, [">= 0"])
+    s.add_dependency(%q<guard>.freeze, [">= 0"])
+    s.add_dependency(%q<guard-rspec>.freeze, [">= 0"])
+    s.add_dependency(%q<rb-fsevent>.freeze, [">= 0.9.2"])
+    s.add_dependency(%q<growl>.freeze, [">= 0"])
   end
 end
 

@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "Analytical::Modules::Chartbeat" do
   before(:each) do
-    @parent = mock('api', :options=>{:chartbeat=>{:key=>1234, :domain =>'test.com'}})
+    @parent = double('api', :options=>{:chartbeat=>{:key=>1234, :domain =>'test.com'}})
   end
   describe 'on initialize' do
     it 'should set the command_location' do
