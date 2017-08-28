@@ -110,7 +110,7 @@ describe "Analytical::Api" do
           expect(@google).to receive(:init_javascript).with(:head_append).and_return('google_a')
           expect(@api.head_append_javascript).to eq("console_agoogle_a")
         end
-        it 'should render an existing template for Rails 3.0' do
+        it 'should render an existing template' do
           @api.options[:javascript_helpers] = true
 
           expect(@api.options[:controller] ||= RSpec::Mocks::Double.new).to receive(:render_to_string) { |param| param[:file] }
