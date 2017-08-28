@@ -3,7 +3,7 @@ require 'json'
 
 describe "Analytical::Modules::Mixpanel" do
   before(:each) do
-    @parent = mock('api', :options=>{:google=>{:js_url_key=>'abc'}})
+    @parent = double('api', :options=>{:google=>{:js_url_key=>'abc'}})
   end
   describe 'on initialize' do
     it 'should set the command_location' do

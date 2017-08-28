@@ -20,7 +20,7 @@ describe Analytical::SessionCommandStore do
     it 'should iterate over elements' do
       @store = Analytical::SessionCommandStore.new @session, :some_module, ['a', 'b']
       @store.each do |elem|
-        ['a', 'b'].include?(elem).should be_true
+        ['a', 'b'].include?(elem).should be true
       end
     end
     it 'should have size' do

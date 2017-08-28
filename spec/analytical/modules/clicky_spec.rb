@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "Analytical::Modules::Clicky" do
   before(:each) do
-    @parent = mock('api', :options=>{:google=>{:key=>'abc'}})
+    @parent = double('api', :options=>{:google=>{:key=>'abc'}})
   end
   describe 'on initialize' do
     it 'should set the command_location' do
@@ -31,13 +31,13 @@ describe "Analytical::Modules::Clicky" do
       @api = Analytical::Modules::Clicky.new :parent=>@parent, :key=>'abcdef'
       @api.init_javascript(:head_prepend).should == ''
       @api.init_javascript(:head_append).should == ''
-      @api.init_javascript(:body_prepend).should == ''            
-      @api.init_javascript(:body_append).should =~ /static.getclicky.com\/js/
-      @api.init_javascript(:body_append).should =~ /abcdef/      
+      @api.init_javascript(:body_prepend).should == ''
+      expect(@api.init_javascript(:body_append)).to match(/static.getclicky.com\/js/)
+      expect(@api.init_javascript(:body_append)).to match(/abcdef/)
     end
     describe 'with an identify command queued' do
       @api = Analytical::Modules::Clicky.new :parent=>@parent, :key=>'abcdef'
-      @api.queue :identify, 'user id', {:email=>'someone@test.com'}
+      @api.queue(:identify, 'user id', {:email=>'someone@test.com'})
       @api.init_javascript(:body_append).should =~ /"email":\w*"someone@test\.com"/
     end
   end

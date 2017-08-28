@@ -15,7 +15,7 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.expect_with :rspec
   config.before do
-    Rails.stub(:root).and_return(Pathname.new(__FILE__).dirname)
+    allow(Rails).to receive(:root).and_return(Pathname.new(__FILE__).dirname)
   end
 end
 

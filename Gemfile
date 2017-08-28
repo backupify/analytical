@@ -1,10 +1,10 @@
-source :rubygems
+source 'https://rubygems.org'
 
 group :development, :test do
-  gem 'rails', '3.0.9'
+  gem 'rails', '5.1.0'
   gem 'activesupport'
   gem 'activemodel'
-  gem 'rspec-rails', '~> 2.11'
+  gem 'rspec-rails'
   gem 'jeweler'
   gem 'diff-lcs'
   gem 'guard'

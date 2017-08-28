@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "Analytical::Modules::Google" do
   before(:each) do
-    @parent = mock('api', :options=>{:google=>{:key=>'abc'}})
+    @parent = double('api', :options=>{:google=>{:key=>'abc'}})
   end
   describe 'on initialize' do
     it 'should set the command_location' do

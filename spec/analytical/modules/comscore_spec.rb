@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "Analytical::Modules::Comscore" do
   before(:each) do
-    @parent = mock('api', :options=>{:comscore=>{:key=>123}})
+    @parent = double('api', :options=>{:comscore=>{:key=>123}})
   end
   describe 'on initialize' do
     it 'should set the command_location' do

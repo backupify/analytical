@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 describe "Analytical::Modules::Reinvigorate" do
 
   before(:each) do
-    @parent = mock('api', :options=>{:reinvigorate=>{:key=>'abc'}})
+    @parent = double('api', :options=>{:reinvigorate=>{:key=>'abc'}})
   end
 
   describe 'on initialize' do
