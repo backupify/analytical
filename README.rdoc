@@ -1,6 +1,6 @@
 = Analytical
 
-Requires Ruby < 2.2.2
+Requires Ruby >= 2.1.0
 
 Gem for managing multiple analytics services in your rails app.
 
@@ -17,6 +17,12 @@ Enter container:
 Run tests
 
 'bundle exec rake spec'
+
+Run example rails app:
+'cd example'
+'cd rails4.2'
+'bundle install'
+'bundle exec rake test:all'
 
 {<img src="https://secure.travis-ci.org/backupify/analytical.png" />}[http://travis-ci.org/backupify/analytical]
 
