@@ -1,6 +1,22 @@
 = Analytical
 
+Requires Ruby < 2.2.2
+
 Gem for managing multiple analytics services in your rails app.
+
+Getting Started:
+
+Build test container with:
+
+'docker build --no-cache -t analytical .'
+
+Enter container:
+
+'docker run -it --rm -v $(pwd):/app analytical'
+
+Run tests
+
+'bundle exec rake spec'
 
 {<img src="https://secure.travis-ci.org/backupify/analytical.png" />}[http://travis-ci.org/backupify/analytical]
 
