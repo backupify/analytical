@@ -111,11 +111,32 @@ describe "Analytical::Api" do
           @google.should_receive(:init_javascript).with(:head_append).and_return('google_a')
           @api.head_append_javascript.should == "console_agoogle_a"
         end
-        it 'should render an existing template for Rails 3.0' do
-          @api.options[:javascript_helpers] = true
-          (@api.options[:controller] ||= Object.new).stub!(:render_to_string) { |param| param[:file] }
-          File.exist?(@api.head_append_javascript).should be_true
+
+
+        # Old Rails 3 Test
+        # it 'should render an existing template for Rails 3.0' do
+        #     @api.options[:javascript_helpers] = true
+        #     (@api.options[:controller] ||= Object.new).stub!(:render_to_string) { |param| param[:file] }
+        #     File.exist?(@api.head_append_javascript).should be_true
+        # end
+
+        it 'should render an existing template for Rails 4.0' do
+            @api.options[:javascript_helpers] = true
+
+            controller = double('controller')
+            allow(controller).to receive(:render_to_string) { |param| param[:file] }
+            @api.options[:controller] = controller
+
+            # Use partial to check if template was rendered correctly
+            controller.should_receive(:render_to_string).with(
+              :partial => 'analytical_javascript', 
+              :formats => [:html], 
+              :handlers => [:erb]
+            ).and_return('<script>analytics_js_helper</script>')
+
+            @api.head_append_javascript.should include('analytics_js_helper')
         end
+        
         it 'should not render an existing template if javascript_helpers is false' do
           @api.options[:javascript_helpers] = false
           (@api.options[:controller] ||= Object.new).should_not_receive(:render_to_string)
