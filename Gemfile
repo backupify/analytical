@@ -1,7 +1,7 @@
 source :rubygems
 
 group :development, :test do
-  gem 'rails', '3.0.9'
+  gem 'rails', '7.1.5.2'
   gem 'activesupport'
   gem 'activemodel'
   gem 'rspec-rails', '~> 2.11'
